@@ -4,6 +4,18 @@ class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
   final double iconSize = 34;
 
+  void menuButton() {
+    print("Menu");
+  }
+
+  void searchButton() {
+    print("Search");
+  }
+
+  void libraryButton() {
+    print("Library");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,17 +37,17 @@ class CustomNavigationBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           IconButton(
-            onPressed: () {},
+            onPressed: menuButton,
             icon: Icon(Icons.home_filled),
             iconSize: iconSize,
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: searchButton,
             icon: Icon(Icons.search),
             iconSize: iconSize,
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: libraryButton,
             icon: Icon(Icons.library_music_rounded),
             iconSize: iconSize,
           ),
