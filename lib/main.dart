@@ -23,6 +23,18 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
+  void onHome() {
+    print("OnHome");
+  }
+
+  void onSearch() {
+    print("OnSearch");
+  }
+
+  void onLibrary() {
+    print("OnLibrary");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +43,11 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: LibraryScreen(),
       ),
-      bottomNavigationBar: CustomNavigationBar(),
+      bottomNavigationBar: CustomNavigationBar(
+        onHome: onHome,
+        onLibrary: onLibrary,
+        onSearch: onSearch,
+      ),
     );
   }
 }

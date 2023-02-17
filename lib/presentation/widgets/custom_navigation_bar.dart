@@ -3,8 +3,17 @@ import 'package:flutter/material.dart';
 import '../custom-theme.dart';
 
 class CustomNavigationBar extends StatelessWidget {
-  const CustomNavigationBar({Key? key}) : super(key: key);
+  CustomNavigationBar({
+    Key? key,
+    required this.onHome,
+    required this.onSearch,
+    required this.onLibrary,
+  }) : super(key: key);
   final double iconSize = 34;
+
+  Function()? onHome;
+  Function()? onSearch;
+  Function()? onLibrary;
 
   void menuButton() {
     print("Menu");
@@ -44,7 +53,7 @@ class CustomNavigationBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
-                  onPressed: menuButton,
+                  onPressed: onHome,
                   icon: Icon(Icons.home_filled),
                   iconSize: iconSize,
                   color: textColor,
@@ -62,7 +71,7 @@ class CustomNavigationBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
-                  onPressed: menuButton,
+                  onPressed: onSearch,
                   icon: Icon(Icons.search),
                   iconSize: iconSize,
                   color: textColor,
@@ -80,7 +89,7 @@ class CustomNavigationBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
-                  onPressed: menuButton,
+                  onPressed: onLibrary,
                   icon: Icon(Icons.library_music),
                   iconSize: iconSize,
                   color: textColor,
