@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:spotify_clone/presentation/custom-theme.dart';
 import 'package:spotify_clone/presentation/screens/library_screen.dart';
 import 'package:spotify_clone/presentation/widgets/custom_navigation_bar.dart';
@@ -39,10 +40,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
+      resizeToAvoidBottomInset: true,
       backgroundColor: bgColor,
-      body: SingleChildScrollView(
-        child: LibraryScreen(),
-      ),
+      body: LibraryScreen(),
       bottomNavigationBar: CustomNavigationBar(
         onHome: onHome,
         onLibrary: onLibrary,

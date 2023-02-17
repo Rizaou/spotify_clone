@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spotify_clone/main.dart';
 import 'package:spotify_clone/presentation/custom-theme.dart';
 import 'package:spotify_clone/presentation/widgets/custom_appbar.dart';
+import 'package:spotify_clone/presentation/widgets/library_items.dart';
 
 class LibraryScreen extends StatelessWidget {
   const LibraryScreen({super.key});
@@ -16,7 +17,50 @@ class LibraryScreen extends StatelessWidget {
             height: kToolbarHeight * 2,
             width: double.infinity,
             child: CustomAppBar(),
-          )
+          ),
+          Container(
+            height: 800,
+            child: ListView(
+              children: [
+                LibraryItems(
+                  title: "Türkçe",
+                  subtitle: "Playlist * Deniz",
+                ),
+                LibraryItems(
+                  title: "Türkçe",
+                  subtitle: "Playlist * Deniz",
+                ),
+                LibraryItems(
+                  title: "Türkçe",
+                  subtitle: "Playlist * Deniz",
+                ),
+                LibraryItems(
+                  title: "Türkçe",
+                  subtitle: "Playlist * Deniz",
+                ),
+                LibraryItems(
+                  title: "Türkçe",
+                  subtitle: "Playlist * Deniz",
+                ),
+                LibraryItems(
+                  title: "Türkçe",
+                  subtitle: "Playlist * Deniz",
+                ),
+                LibraryItems(
+                  title: "Türkçe",
+                  subtitle: "Playlist * Deniz",
+                ),
+                LibraryItems(
+                  title: "Türkçe",
+                  subtitle: "Playlist * Deniz",
+                ),
+                LibraryItems(
+                  title: "Türkçe",
+                  subtitle: "Playlist * Deniz",
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
