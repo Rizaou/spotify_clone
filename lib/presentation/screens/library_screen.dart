@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spotify_clone/main.dart';
 import 'package:spotify_clone/presentation/custom-theme.dart';
+import 'package:spotify_clone/presentation/widgets/custom_appbar.dart';
 
 class LibraryScreen extends StatelessWidget {
   const LibraryScreen({super.key});
@@ -14,7 +15,7 @@ class LibraryScreen extends StatelessWidget {
             color: bgColor,
             height: kToolbarHeight * 2,
             width: double.infinity,
-            child: customAppBar,
+            child: CustomAppBar(),
           )
         ],
       ),
