@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../custom-theme.dart';
+
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
   final double iconSize = 34;
@@ -40,16 +42,19 @@ class CustomNavigationBar extends StatelessWidget {
             onPressed: menuButton,
             icon: Icon(Icons.home_filled),
             iconSize: iconSize,
+            color: textColor,
           ),
           IconButton(
             onPressed: searchButton,
             icon: Icon(Icons.search),
             iconSize: iconSize,
+            color: textColor,
           ),
           IconButton(
             onPressed: libraryButton,
             icon: Icon(Icons.library_music_rounded),
             iconSize: iconSize,
+            color: textColor,
           ),
         ],
       ),
