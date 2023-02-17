@@ -69,7 +69,7 @@ Widget customAppBar = Column(
               padding: const EdgeInsets.only(left: 10.0),
               child: Text(
                 "Your Library",
-                style: TextStyle(color: textColor),
+                style: h1,
               ),
             ),
           ),
@@ -95,15 +95,15 @@ Widget customAppBar = Column(
       children: [
         Text(
           "Playlist",
-          style: TextStyle(color: textColor),
+          style: h2,
         ),
         Text(
           "Podcast",
-          style: TextStyle(color: textColor),
+          style: h2,
         ),
         Text(
           "Albums",
-          style: TextStyle(color: textColor),
+          style: h2,
         ),
       ],
     )
