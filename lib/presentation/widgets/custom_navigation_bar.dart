@@ -38,23 +38,59 @@ class CustomNavigationBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          IconButton(
-            onPressed: menuButton,
-            icon: Icon(Icons.home_filled),
-            iconSize: iconSize,
-            color: textColor,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  onPressed: menuButton,
+                  icon: Icon(Icons.home_filled),
+                  iconSize: iconSize,
+                  color: textColor,
+                ),
+                Text(
+                  "Home",
+                  style: normalText,
+                ),
+              ],
+            ),
           ),
-          IconButton(
-            onPressed: searchButton,
-            icon: Icon(Icons.search),
-            iconSize: iconSize,
-            color: textColor,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  onPressed: menuButton,
+                  icon: Icon(Icons.search),
+                  iconSize: iconSize,
+                  color: textColor,
+                ),
+                Text(
+                  "Search",
+                  style: normalText,
+                ),
+              ],
+            ),
           ),
-          IconButton(
-            onPressed: libraryButton,
-            icon: Icon(Icons.library_music_rounded),
-            iconSize: iconSize,
-            color: textColor,
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  onPressed: menuButton,
+                  icon: Icon(Icons.library_music),
+                  iconSize: iconSize,
+                  color: textColor,
+                ),
+                Text(
+                  "Library",
+                  style: normalText,
+                ),
+              ],
+            ),
           ),
         ],
       ),

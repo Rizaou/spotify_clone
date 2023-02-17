@@ -15,24 +15,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
 
-/**
- * 
- * 
- * CircleAvatar(
-                    child: Text(
-                      "D",
-                      style: (TextStyle(color: Colors.black, fontSize: 30)),
-                    ),
-                    backgroundColor: Colors.orange,
-                  ),
- */
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
