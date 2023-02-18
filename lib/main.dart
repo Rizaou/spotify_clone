@@ -42,12 +42,32 @@ class HomePage extends StatelessWidget {
       extendBody: true,
       resizeToAvoidBottomInset: true,
       backgroundColor: bgColor,
-      body: LibraryScreen(),
-      bottomNavigationBar: CustomNavigationBar(
-        onHome: onHome,
-        onLibrary: onLibrary,
-        onSearch: onSearch,
+      body: Stack(
+        children: [
+          const LibraryScreen(),
+          Positioned(
+            bottom: 0,
+            width: MediaQuery.of(context).size.width,
+            child: CustomNavigationBar(
+              onHome: onHome,
+              onLibrary: onLibrary,
+              onSearch: onSearch,
+            ),
+          )
+        ],
       ),
     );
   }
 }
+
+/**
+ * 
+ * 
+CustomNavigationBar(
+        onHome: onHome,
+        onLibrary: onLibrary,
+        onSearch: onSearch,
+      ),
+
+
+ */

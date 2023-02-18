@@ -18,9 +18,9 @@ class LibraryScreen extends StatelessWidget {
             width: double.infinity,
             child: CustomAppBar(),
           ),
-          Container(
-            height: 800,
+          Expanded(
             child: ListView(
+              shrinkWrap: true,
               children: [
                 LibraryItems(
                   title: "Türkçe",
