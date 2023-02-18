@@ -19,46 +19,54 @@ class LibraryScreen extends StatelessWidget {
             child: CustomAppBar(),
           ),
           Expanded(
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                LibraryItems(
-                  title: "Türkçe",
-                  subtitle: "Playlist * Deniz",
-                ),
-                LibraryItems(
-                  title: "Türkçe",
-                  subtitle: "Playlist * Deniz",
-                ),
-                LibraryItems(
-                  title: "Türkçe",
-                  subtitle: "Playlist * Deniz",
-                ),
-                LibraryItems(
-                  title: "Türkçe",
-                  subtitle: "Playlist * Deniz",
-                ),
-                LibraryItems(
-                  title: "Türkçe",
-                  subtitle: "Playlist * Deniz",
-                ),
-                LibraryItems(
-                  title: "Türkçe",
-                  subtitle: "Playlist * Deniz",
-                ),
-                LibraryItems(
-                  title: "Türkçe",
-                  subtitle: "Playlist * Deniz",
-                ),
-                LibraryItems(
-                  title: "Türkçe",
-                  subtitle: "Playlist * Deniz",
-                ),
-                LibraryItems(
-                  title: "Türkçe",
-                  subtitle: "Playlist * Deniz",
-                ),
-              ],
+            child: NotificationListener<OverscrollIndicatorNotification>(
+              onNotification: (notification) {
+                notification.disallowIndicator();
+                return notification.accepted;
+              },
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  LibraryItems(
+                    title: "Liked Songs",
+                    subtitle: "Playlist . 41 songs",
+                    color: Colors.blue,
+                  ),
+                  LibraryItems(
+                    title: "New Episodes",
+                    subtitle: "Updated Yesterday",
+                    color: Colors.purple,
+                  ),
+                  LibraryItems(
+                    title: "Türkçe",
+                    subtitle: "Playlist * Deniz",
+                  ),
+                  LibraryItems(
+                    title: "Türkçe",
+                    subtitle: "Playlist * Deniz",
+                  ),
+                  LibraryItems(
+                    title: "Türkçe",
+                    subtitle: "Playlist * Deniz",
+                  ),
+                  LibraryItems(
+                    title: "Türkçe",
+                    subtitle: "Playlist * Deniz",
+                  ),
+                  LibraryItems(
+                    title: "Türkçe",
+                    subtitle: "Playlist * Deniz",
+                  ),
+                  LibraryItems(
+                    title: "Türkçe",
+                    subtitle: "Playlist * Deniz",
+                  ),
+                  LibraryItems(
+                    title: "Türkçe",
+                    subtitle: "Playlist * Deniz",
+                  ),
+                ],
+              ),
             ),
           ),
         ],

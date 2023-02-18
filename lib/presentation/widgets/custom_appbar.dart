@@ -38,12 +38,16 @@ class CustomAppBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CircleAvatar(
+              const CircleAvatar(
+                backgroundColor: Colors.orange,
                 child: Text(
                   "D",
-                  style: (TextStyle(color: Colors.black, fontSize: 30)),
+                  style: (TextStyle(
+                    color: Colors.black,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  )),
                 ),
-                backgroundColor: Colors.orange,
               ),
               Expanded(
                 flex: 2,
