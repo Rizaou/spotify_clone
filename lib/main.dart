@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:spotify_clone/presentation/custom-theme.dart';
+import 'package:spotify_clone/presentation/screens/home_screen.dart';
 import 'package:spotify_clone/presentation/screens/library_screen.dart';
+import 'package:spotify_clone/presentation/screens/search_screen.dart';
 import 'package:spotify_clone/presentation/widgets/custom_navigation_bar.dart';
 
 void main() {
@@ -21,19 +23,30 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
+  Widget screen = LibraryScreen();
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
   void onHome() {
-    print("OnHome");
+    setState(() {
+      widget.screen = HomeScreen();
+    });
   }
 
   void onSearch() {
-    print("OnSearch");
+    setState(() {
+      widget.screen = SearchScreen();
+    });
   }
 
   void onLibrary() {
-    print("OnLibrary");
+    setState(() {
+      widget.screen = LibraryScreen();
+    });
   }
 
   @override
@@ -44,7 +57,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: bgColor,
       body: Stack(
         children: [
-          const LibraryScreen(),
+          widget.screen,
           Positioned(
             bottom: 0,
             width: MediaQuery.of(context).size.width,
