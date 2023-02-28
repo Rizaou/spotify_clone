@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+
+import '../custom-theme.dart';
+
+class AppBarButton extends StatefulWidget {
+  AppBarButton({Key? key, required this.title}) : super(key: key);
+
+  bool clicked = false;
+  String title;
+
+  @override
+  State<AppBarButton> createState() => _AppBarButtonState();
+}
+
+class _AppBarButtonState extends State<AppBarButton> {
+  void clicked() {
+    setState(() {
+      widget.clicked = !widget.clicked;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: clicked,
+      child: Container(
+        padding: const EdgeInsets.only(
+          left: 14,
+          right: 14,
+          top: 8,
+          bottom: 8,
+        ),
+        decoration: BoxDecoration(
+          color: widget.clicked ? appbarButtonClickedColor : null,
+          border: Border.all(
+            color: Colors.grey,
+          ),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Text(
+          widget.title,
+          style: h2,
+        ),
+      ),
+    );
+  }
+}

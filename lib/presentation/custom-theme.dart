@@ -7,3 +7,5 @@ TextStyle h1 =
     TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold);
 TextStyle h2 = TextStyle(color: Colors.white);
 TextStyle normalText = TextStyle(color: Colors.white);
+
+Color appbarButtonClickedColor = Colors.green.shade900;

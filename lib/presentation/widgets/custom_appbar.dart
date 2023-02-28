@@ -1,31 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:spotify_clone/presentation/widgets/appbar_buttons.dart';
 
 import '../custom-theme.dart';
 
 class CustomAppBar extends StatelessWidget {
   CustomAppBar({Key? key}) : super(key: key);
 
-  Widget createHeader(String title) {
-    return Container(
-      padding: const EdgeInsets.only(
-        left: 14,
-        right: 14,
-        top: 8,
-        bottom: 8,
-      ),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.grey,
-        ),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        title,
-        style: h2,
-      ),
-    );
-  }
+  void clicked() {}
 
   @override
   Widget build(BuildContext context) {
@@ -84,11 +66,11 @@ class CustomAppBar extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                createHeader("Playlists"),
-                createHeader("Podcast & Shows"),
-                createHeader("Albums"),
-                createHeader("Artist"),
-                createHeader("Downloaded"),
+                AppBarButton(title: "Playlists"),
+                AppBarButton(title: "Podcast & Shows"),
+                AppBarButton(title: "Albums"),
+                AppBarButton(title: "Artist"),
+                AppBarButton(title: "Downloaded"),
               ],
             ),
           ),
@@ -98,29 +80,11 @@ class CustomAppBar extends StatelessWidget {
   }
 }
 
-/**
- Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  color: Colors.yellow,
-                  child: Text(
-                    "Playlist",
-                    style: h2,
-                  ),
-                ),
-                Container(
-                  child: Text(
-                    "Podcast",
-                    style: h2,
-                  ),
-                ),
-                Container(
-                  child: Text(
-                    "Albums",
-                    style: h2,
-                  ),
-                ),
-              ],
-            )
+
+/*
+ AppBarButton(title: "Playlists"),
+                AppBarButton(title: "Podcast & Shows"),
+                AppBarButton(title: "Albums"),
+                AppBarButton(title: "Artist"),
+                AppBarButton(title: "Downloaded"),
  */
