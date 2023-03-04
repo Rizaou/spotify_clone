@@ -58,20 +58,25 @@ class CustomAppBar extends StatelessWidget {
             ],
           ),
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Container(
-            width: MediaQuery.of(context).size.width + 100,
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                AppBarButton(title: "Playlists"),
-                AppBarButton(title: "Podcast & Shows"),
-                AppBarButton(title: "Albums"),
-                AppBarButton(title: "Artist"),
-                AppBarButton(title: "Downloaded"),
-              ],
+        Container(
+          width: MediaQuery.of(context).size.width,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Container(
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  AppBarButton(
+                    title: "X",
+                  ),
+                  AppBarButton(title: "Playlists"),
+                  AppBarButton(title: "Podcast & Shows"),
+                  AppBarButton(title: "Albums"),
+                  AppBarButton(title: "Artist"),
+                  AppBarButton(title: "Downloaded"),
+                ],
+              ),
             ),
           ),
         ),

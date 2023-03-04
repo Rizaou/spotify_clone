@@ -21,25 +21,28 @@ class _AppBarButtonState extends State<AppBarButton> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: clicked,
-      child: Container(
-        padding: const EdgeInsets.only(
-          left: 14,
-          right: 14,
-          top: 8,
-          bottom: 8,
-        ),
-        decoration: BoxDecoration(
-          color: widget.clicked ? appbarButtonClickedColor : null,
-          border: Border.all(
-            color: Colors.grey,
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: InkWell(
+        onTap: clicked,
+        child: Container(
+          padding: const EdgeInsets.only(
+            left: 14,
+            right: 14,
+            top: 8,
+            bottom: 8,
           ),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Text(
-          widget.title,
-          style: h2,
+          decoration: BoxDecoration(
+            color: widget.clicked ? appbarButtonClickedColor : null,
+            border: Border.all(
+              color: Colors.grey,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Text(
+            widget.title,
+            style: h2,
+          ),
         ),
       ),
     );
