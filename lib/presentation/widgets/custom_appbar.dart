@@ -220,13 +220,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   hasClicked()
                       ? AppBarButton(title: "X", onclick: clearList)
                       : SizedBox(),
-                  Container(
-                      alignment: Alignment.center,
-                      width: 50,
-                      child: Text(
-                        widget.filterQueue.length.toString(),
-                        style: TextStyle(color: Colors.white),
-                      )),
                   ...getTitleList(),
                 ],
               ),
