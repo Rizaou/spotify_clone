@@ -26,72 +26,16 @@ class _CustomAppBarState extends State<CustomAppBar> {
   void clearList() => setState(() {
         widget.filterQueue.clear();
       });
-  void clickedPlaylist() {
+  void clickedAppBarTitle(String title) {
     setState(() {
-      if (widget.filterQueue.contains(CustomAppBar.playlistName)) {
-        widget.filterQueue.remove(CustomAppBar.playlistName);
+      if (widget.filterQueue.contains(title)) {
+        if (widget.filterQueue[0] == title) {
+          widget.filterQueue.clear();
+        } else {
+          widget.filterQueue.remove(title);
+        }
       } else {
-        widget.filterQueue.add(CustomAppBar.playlistName);
-      }
-    });
-  }
-
-  void clickedPodcastNShows() {
-    setState(() {
-      if (widget.filterQueue.contains(CustomAppBar.podcastNShowsName)) {
-        widget.filterQueue.remove(CustomAppBar.podcastNShowsName);
-      } else {
-        widget.filterQueue.add(CustomAppBar.podcastNShowsName);
-      }
-    });
-  }
-
-  void clickedAlbums() {
-    setState(() {
-      if (widget.filterQueue.contains(CustomAppBar.albumsName)) {
-        widget.filterQueue.remove(CustomAppBar.albumsName);
-      } else {
-        widget.filterQueue.add(CustomAppBar.albumsName);
-      }
-    });
-  }
-
-  void clickedArtist() {
-    setState(() {
-      if (widget.filterQueue.contains(CustomAppBar.artistsName)) {
-        widget.filterQueue.remove(CustomAppBar.artistsName);
-      } else {
-        widget.filterQueue.add(CustomAppBar.artistsName);
-      }
-    });
-  }
-
-  void clickedDownloaded() {
-    setState(() {
-      if (widget.filterQueue.contains(CustomAppBar.downloadedName)) {
-        widget.filterQueue.remove(CustomAppBar.downloadedName);
-      } else {
-        widget.filterQueue.add(CustomAppBar.downloadedName);
-      }
-    });
-  }
-
-  void clickedByYou() {
-    setState(() {
-      if (widget.filterQueue.contains(CustomAppBar.byYouName)) {
-        widget.filterQueue.remove(CustomAppBar.byYouName);
-      } else {
-        widget.filterQueue.add(CustomAppBar.byYouName);
-      }
-    });
-  }
-
-  void clickedBySpotify() {
-    setState(() {
-      if (widget.filterQueue.contains(CustomAppBar.bySpotifyName)) {
-        widget.filterQueue.remove(CustomAppBar.bySpotifyName);
-      } else {
-        widget.filterQueue.add(CustomAppBar.bySpotifyName);
+        widget.filterQueue.add(title);
       }
     });
   }
@@ -108,26 +52,55 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
       list = [
         AppBarButton(
-            title: CustomAppBar.playlistName, onclick: clickedPlaylist),
+            title: CustomAppBar.playlistName,
+            onclick: () {
+              clickedAppBarTitle(CustomAppBar.playlistName);
+            }),
         AppBarButton(
             title: CustomAppBar.podcastNShowsName,
-            onclick: clickedPodcastNShows),
-        AppBarButton(title: CustomAppBar.albumsName, onclick: clickedAlbums),
-        AppBarButton(title: CustomAppBar.artistsName, onclick: clickedArtist),
+            onclick: () {
+              clickedAppBarTitle(CustomAppBar.podcastNShowsName);
+            }),
         AppBarButton(
-            title: CustomAppBar.downloadedName, onclick: clickedDownloaded),
+            title: CustomAppBar.albumsName,
+            onclick: () {
+              clickedAppBarTitle(CustomAppBar.albumsName);
+            }),
+        AppBarButton(
+            title: CustomAppBar.artistsName,
+            onclick: () {
+              clickedAppBarTitle(CustomAppBar.artistsName);
+            }),
+        AppBarButton(
+            title: CustomAppBar.downloadedName,
+            onclick: () {
+              clickedAppBarTitle(CustomAppBar.downloadedName);
+            }),
       ];
     } else {
       switch (widget.filterQueue[0]) {
         case CustomAppBar.playlistName:
           list = [
             AppBarButton(
-                title: CustomAppBar.playlistName, onclick: clickedPlaylist),
-            AppBarButton(title: CustomAppBar.byYouName, onclick: clickedByYou),
+                title: CustomAppBar.playlistName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.playlistName);
+                }),
             AppBarButton(
-                title: CustomAppBar.bySpotifyName, onclick: clickedBySpotify),
+                title: CustomAppBar.byYouName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.byYouName);
+                }),
             AppBarButton(
-                title: CustomAppBar.downloadedName, onclick: clickedDownloaded),
+                title: CustomAppBar.bySpotifyName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.bySpotifyName);
+                }),
+            AppBarButton(
+                title: CustomAppBar.downloadedName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.downloadedName);
+                }),
           ];
           break;
 
@@ -135,30 +108,48 @@ class _CustomAppBarState extends State<CustomAppBar> {
           list = [
             AppBarButton(
                 title: CustomAppBar.podcastNShowsName,
-                onclick: clickedPodcastNShows),
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.podcastNShowsName);
+                }),
           ];
           break;
 
         case CustomAppBar.albumsName:
           list = [
-            AppBarButton(title: CustomAppBar.albumsName, onclick: clickedArtist)
+            AppBarButton(
+                title: CustomAppBar.albumsName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.albumsName);
+                })
           ];
           break;
 
         case CustomAppBar.artistsName:
           list = [
             AppBarButton(
-                title: CustomAppBar.artistsName, onclick: clickedArtist)
+                title: CustomAppBar.artistsName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.artistsName);
+                })
           ];
           break;
         case CustomAppBar.downloadedName:
           list = [
             AppBarButton(
-                title: CustomAppBar.downloadedName, onclick: clickedDownloaded),
+                title: CustomAppBar.downloadedName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.downloadedName);
+                }),
             AppBarButton(
-                title: CustomAppBar.playlistName, onclick: clickedPlaylist),
+                title: CustomAppBar.playlistName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.playlistName);
+                }),
             AppBarButton(
-                title: CustomAppBar.albumsName, onclick: clickedAlbums),
+                title: CustomAppBar.albumsName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.albumsName);
+                }),
           ];
 
           break;
