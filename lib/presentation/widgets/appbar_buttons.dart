@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 import '../custom-theme.dart';
 
 class AppBarButton extends StatefulWidget {
-  AppBarButton({Key? key, required this.title}) : super(key: key);
+  AppBarButton({
+    Key? key,
+    required this.title,
+    required this.onclick,
+  }) : super(key: key);
 
   bool clicked = false;
   String title;
-
+  Function onclick;
   @override
   State<AppBarButton> createState() => _AppBarButtonState();
 }
@@ -15,6 +19,7 @@ class AppBarButton extends StatefulWidget {
 class _AppBarButtonState extends State<AppBarButton> {
   void clicked() {
     setState(() {
+      widget.onclick();
       widget.clicked = !widget.clicked;
     });
   }

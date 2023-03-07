@@ -1,13 +1,172 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:spotify_clone/presentation/widgets/appbar_buttons.dart';
 
 import '../custom-theme.dart';
 
-class CustomAppBar extends StatelessWidget {
+class CustomAppBar extends StatefulWidget {
   CustomAppBar({Key? key}) : super(key: key);
 
-  void clicked() {}
+  static const String playlistName = "Playlists";
+  static const String podcastNShowsName = "Podcast & Shows";
+  static const String albumsName = "Albums";
+  static const String artistsName = "Artists";
+  static const String downloadedName = "Downloaded";
+  static const String byYouName = "By you";
+  static const String bySpotifyName = "By Spotify";
+
+  List<String> filterQueue = [];
+
+  @override
+  State<CustomAppBar> createState() => _CustomAppBarState();
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
+  void clearList() => setState(() {
+        widget.filterQueue.clear();
+      });
+  void clickedPlaylist() {
+    setState(() {
+      if (widget.filterQueue.contains(CustomAppBar.playlistName)) {
+        widget.filterQueue.remove(CustomAppBar.playlistName);
+      } else {
+        widget.filterQueue.add(CustomAppBar.playlistName);
+      }
+    });
+  }
+
+  void clickedPodcastNShows() {
+    setState(() {
+      if (widget.filterQueue.contains(CustomAppBar.podcastNShowsName)) {
+        widget.filterQueue.remove(CustomAppBar.podcastNShowsName);
+      } else {
+        widget.filterQueue.add(CustomAppBar.podcastNShowsName);
+      }
+    });
+  }
+
+  void clickedAlbums() {
+    setState(() {
+      if (widget.filterQueue.contains(CustomAppBar.albumsName)) {
+        widget.filterQueue.remove(CustomAppBar.albumsName);
+      } else {
+        widget.filterQueue.add(CustomAppBar.albumsName);
+      }
+    });
+  }
+
+  void clickedArtist() {
+    setState(() {
+      if (widget.filterQueue.contains(CustomAppBar.artistsName)) {
+        widget.filterQueue.remove(CustomAppBar.artistsName);
+      } else {
+        widget.filterQueue.add(CustomAppBar.artistsName);
+      }
+    });
+  }
+
+  void clickedDownloaded() {
+    setState(() {
+      if (widget.filterQueue.contains(CustomAppBar.downloadedName)) {
+        widget.filterQueue.remove(CustomAppBar.downloadedName);
+      } else {
+        widget.filterQueue.add(CustomAppBar.downloadedName);
+      }
+    });
+  }
+
+  void clickedByYou() {
+    setState(() {
+      if (widget.filterQueue.contains(CustomAppBar.byYouName)) {
+        widget.filterQueue.remove(CustomAppBar.byYouName);
+      } else {
+        widget.filterQueue.add(CustomAppBar.byYouName);
+      }
+    });
+  }
+
+  void clickedBySpotify() {
+    setState(() {
+      if (widget.filterQueue.contains(CustomAppBar.bySpotifyName)) {
+        widget.filterQueue.remove(CustomAppBar.bySpotifyName);
+      } else {
+        widget.filterQueue.add(CustomAppBar.bySpotifyName);
+      }
+    });
+  }
+
+  bool hasClicked() {
+    return widget.filterQueue.isNotEmpty;
+  }
+
+  List<Widget> getTitleList() {
+    List<Widget> list = [];
+    if (widget.filterQueue.isEmpty) {
+      //* Returns default list of title.
+      //* Playlist - Podcast - Albums - Artists - Downloaded
+
+      list = [
+        AppBarButton(
+            title: CustomAppBar.playlistName, onclick: clickedPlaylist),
+        AppBarButton(
+            title: CustomAppBar.podcastNShowsName,
+            onclick: clickedPodcastNShows),
+        AppBarButton(title: CustomAppBar.albumsName, onclick: clickedAlbums),
+        AppBarButton(title: CustomAppBar.artistsName, onclick: clickedArtist),
+        AppBarButton(
+            title: CustomAppBar.downloadedName, onclick: clickedDownloaded),
+      ];
+    } else {
+      switch (widget.filterQueue[0]) {
+        case CustomAppBar.playlistName:
+          list = [
+            AppBarButton(
+                title: CustomAppBar.playlistName, onclick: clickedPlaylist),
+            AppBarButton(title: CustomAppBar.byYouName, onclick: clickedByYou),
+            AppBarButton(
+                title: CustomAppBar.bySpotifyName, onclick: clickedBySpotify),
+            AppBarButton(
+                title: CustomAppBar.downloadedName, onclick: clickedDownloaded),
+          ];
+          break;
+
+        case CustomAppBar.podcastNShowsName:
+          list = [
+            AppBarButton(
+                title: CustomAppBar.podcastNShowsName,
+                onclick: clickedPodcastNShows),
+          ];
+          break;
+
+        case CustomAppBar.albumsName:
+          list = [
+            AppBarButton(title: CustomAppBar.albumsName, onclick: clickedArtist)
+          ];
+          break;
+
+        case CustomAppBar.artistsName:
+          list = [
+            AppBarButton(
+                title: CustomAppBar.artistsName, onclick: clickedArtist)
+          ];
+          break;
+        case CustomAppBar.downloadedName:
+          list = [
+            AppBarButton(
+                title: CustomAppBar.downloadedName, onclick: clickedDownloaded),
+            AppBarButton(
+                title: CustomAppBar.playlistName, onclick: clickedPlaylist),
+            AppBarButton(
+                title: CustomAppBar.albumsName, onclick: clickedAlbums),
+          ];
+
+          break;
+      }
+    }
+
+    return list;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,14 +226,17 @@ class CustomAppBar extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  AppBarButton(
-                    title: "X",
-                  ),
-                  AppBarButton(title: "Playlists"),
-                  AppBarButton(title: "Podcast & Shows"),
-                  AppBarButton(title: "Albums"),
-                  AppBarButton(title: "Artist"),
-                  AppBarButton(title: "Downloaded"),
+                  hasClicked()
+                      ? AppBarButton(title: "X", onclick: clearList)
+                      : SizedBox(),
+                  Container(
+                      alignment: Alignment.center,
+                      width: 50,
+                      child: Text(
+                        widget.filterQueue.length.toString(),
+                        style: TextStyle(color: Colors.white),
+                      )),
+                  ...getTitleList(),
                 ],
               ),
             ),
