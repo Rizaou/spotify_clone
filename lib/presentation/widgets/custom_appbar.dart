@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:spotify_clone/presentation/widgets/appbar_buttons.dart';
+import 'package:spotify_clone/presentation/widgets/modal_bottom_sheet.dart';
 
 import '../custom-theme.dart';
 
@@ -199,7 +200,23 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     color: textColor,
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                        backgroundColor: bgColor,
+                        clipBehavior: Clip.antiAlias,
+                        useSafeArea: true,
+                        // shape: const RoundedRectangleBorder(
+                        //   borderRadius: BorderRadius.only(
+                        //     topLeft: Radius.circular(50),
+                        //     topRight: Radius.circular(50),
+                        //   ),
+                        // ),
+                        context: context,
+                        builder: (ctx) {
+                          return ModalBottomSheet();
+                        },
+                      );
+                    },
                     icon: Icon(Icons.add),
                     color: textColor,
                   ),
