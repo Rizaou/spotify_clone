@@ -1,30 +1,163 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:spotify_clone/presentation/widgets/appbar_buttons.dart';
+import 'package:spotify_clone/presentation/widgets/modal_bottom_sheet.dart';
 
 import '../custom-theme.dart';
 
-class CustomAppBar extends StatelessWidget {
+class CustomAppBar extends StatefulWidget {
   CustomAppBar({Key? key}) : super(key: key);
 
-  Widget createHeader(String title) {
-    return Container(
-      padding: const EdgeInsets.only(
-        left: 14,
-        right: 14,
-        top: 8,
-        bottom: 8,
-      ),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.grey,
-        ),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        title,
-        style: h2,
-      ),
-    );
+  static const String playlistName = "Playlists";
+  static const String podcastNShowsName = "Podcast & Shows";
+  static const String albumsName = "Albums";
+  static const String artistsName = "Artists";
+  static const String downloadedName = "Downloaded";
+  static const String byYouName = "By you";
+  static const String bySpotifyName = "By Spotify";
+
+  List<String> filterQueue = [];
+
+  @override
+  State<CustomAppBar> createState() => _CustomAppBarState();
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
+  void clearList() => setState(() {
+        widget.filterQueue.clear();
+      });
+  void clickedAppBarTitle(String title) {
+    setState(() {
+      if (widget.filterQueue.contains(title)) {
+        if (widget.filterQueue[0] == title) {
+          widget.filterQueue.clear();
+        } else {
+          widget.filterQueue.remove(title);
+        }
+      } else {
+        widget.filterQueue.add(title);
+      }
+    });
+  }
+
+  bool hasClicked() {
+    return widget.filterQueue.isNotEmpty;
+  }
+
+  List<Widget> getTitleList() {
+    List<Widget> list = [];
+    if (widget.filterQueue.isEmpty) {
+      //* Returns default list of title.
+      //* Playlist - Podcast - Albums - Artists - Downloaded
+
+      list = [
+        AppBarButton(
+            title: CustomAppBar.playlistName,
+            onclick: () {
+              clickedAppBarTitle(CustomAppBar.playlistName);
+            }),
+        AppBarButton(
+            title: CustomAppBar.podcastNShowsName,
+            onclick: () {
+              clickedAppBarTitle(CustomAppBar.podcastNShowsName);
+            }),
+        AppBarButton(
+            title: CustomAppBar.albumsName,
+            onclick: () {
+              clickedAppBarTitle(CustomAppBar.albumsName);
+            }),
+        AppBarButton(
+            title: CustomAppBar.artistsName,
+            onclick: () {
+              clickedAppBarTitle(CustomAppBar.artistsName);
+            }),
+        AppBarButton(
+            title: CustomAppBar.downloadedName,
+            onclick: () {
+              clickedAppBarTitle(CustomAppBar.downloadedName);
+            }),
+      ];
+    } else {
+      switch (widget.filterQueue[0]) {
+        case CustomAppBar.playlistName:
+          list = [
+            AppBarButton(
+                title: CustomAppBar.playlistName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.playlistName);
+                }),
+            AppBarButton(
+                title: CustomAppBar.byYouName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.byYouName);
+                }),
+            AppBarButton(
+                title: CustomAppBar.bySpotifyName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.bySpotifyName);
+                }),
+            AppBarButton(
+                title: CustomAppBar.downloadedName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.downloadedName);
+                }),
+          ];
+          break;
+
+        case CustomAppBar.podcastNShowsName:
+          list = [
+            AppBarButton(
+                title: CustomAppBar.podcastNShowsName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.podcastNShowsName);
+                }),
+          ];
+          break;
+
+        case CustomAppBar.albumsName:
+          list = [
+            AppBarButton(
+                title: CustomAppBar.albumsName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.albumsName);
+                })
+          ];
+          break;
+
+        case CustomAppBar.artistsName:
+          list = [
+            AppBarButton(
+                title: CustomAppBar.artistsName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.artistsName);
+                })
+          ];
+          break;
+        case CustomAppBar.downloadedName:
+          list = [
+            AppBarButton(
+                title: CustomAppBar.downloadedName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.downloadedName);
+                }),
+            AppBarButton(
+                title: CustomAppBar.playlistName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.playlistName);
+                }),
+            AppBarButton(
+                title: CustomAppBar.albumsName,
+                onclick: () {
+                  clickedAppBarTitle(CustomAppBar.albumsName);
+                }),
+          ];
+
+          break;
+      }
+    }
+
+    return list;
   }
 
   @override
@@ -67,7 +200,23 @@ class CustomAppBar extends StatelessWidget {
                     color: textColor,
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                        backgroundColor: bgColor,
+                        clipBehavior: Clip.antiAlias,
+                        useSafeArea: true,
+                        // shape: const RoundedRectangleBorder(
+                        //   borderRadius: BorderRadius.only(
+                        //     topLeft: Radius.circular(50),
+                        //     topRight: Radius.circular(50),
+                        //   ),
+                        // ),
+                        context: context,
+                        builder: (ctx) {
+                          return ModalBottomSheet();
+                        },
+                      );
+                    },
                     icon: Icon(Icons.add),
                     color: textColor,
                   ),
@@ -76,20 +225,21 @@ class CustomAppBar extends StatelessWidget {
             ],
           ),
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Container(
-            width: MediaQuery.of(context).size.width + 100,
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                createHeader("Playlists"),
-                createHeader("Podcast & Shows"),
-                createHeader("Albums"),
-                createHeader("Artist"),
-                createHeader("Downloaded"),
-              ],
+        Container(
+          width: MediaQuery.of(context).size.width,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Container(
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  hasClicked()
+                      ? AppBarButton(title: "X", onclick: clearList)
+                      : SizedBox(),
+                  ...getTitleList(),
+                ],
+              ),
             ),
           ),
         ),
@@ -98,29 +248,11 @@ class CustomAppBar extends StatelessWidget {
   }
 }
 
-/**
- Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  color: Colors.yellow,
-                  child: Text(
-                    "Playlist",
-                    style: h2,
-                  ),
-                ),
-                Container(
-                  child: Text(
-                    "Podcast",
-                    style: h2,
-                  ),
-                ),
-                Container(
-                  child: Text(
-                    "Albums",
-                    style: h2,
-                  ),
-                ),
-              ],
-            )
+
+/*
+ AppBarButton(title: "Playlists"),
+                AppBarButton(title: "Podcast & Shows"),
+                AppBarButton(title: "Albums"),
+                AppBarButton(title: "Artist"),
+                AppBarButton(title: "Downloaded"),
  */
