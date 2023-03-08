@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:spotify_clone/presentation/custom-theme.dart';
 
+import '../screens/create_playlist_screen.dart';
+
 class ModalBottomSheet extends StatelessWidget {
-  const ModalBottomSheet({Key? key}) : super(key: key);
+  ModalBottomSheet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,6 +12,7 @@ class ModalBottomSheet extends StatelessWidget {
       children: [
         SizedBox(
           height: 200,
+          width: MediaQuery.of(context).size.width,
           child: Column(
             children: [
               Expanded(
@@ -27,31 +30,50 @@ class ModalBottomSheet extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 50,
-                      child: Icon(
-                        Icons.music_note,
-                        color: Colors.white,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return CratePlaylistScreen();
+                        },
                       ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    );
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.black.withOpacity(0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
                       children: [
-                        Text(
-                          "Playlist",
-                          style: h2,
-                          textAlign: TextAlign.left,
+                        const SizedBox(
+                          width: 50,
+                          child: Icon(
+                            Icons.music_note,
+                            color: Colors.white,
+                          ),
                         ),
-                        Text(
-                          "Add song to a new playlist",
-                          style: TextStyle(color: Colors.grey.shade700),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width - 50,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Playlist",
+                                style: h2,
+                                textAlign: TextAlign.left,
+                              ),
+                              Text(
+                                "Add song to a new playlist",
+                                style: TextStyle(color: Colors.grey.shade700),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
               ),
               Expanded(
