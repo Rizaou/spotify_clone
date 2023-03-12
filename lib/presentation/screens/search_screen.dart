@@ -5,8 +5,12 @@ import 'dart:math' as math;
 import 'package:spotify_clone/presentation/widgets/genre_cards.dart';
 
 class SearchScreen extends StatefulWidget {
-  SearchScreen({Key? key}) : super(key: key);
+  SearchScreen({
+    Key? key,
+    required this.onSearchBar,
+  }) : super(key: key);
   final int genreCount = 5;
+  Function onSearchBar;
 
   final List<GenreCard> genreCards = [
     GenreCard(title: "Podcasts", cardColor: Colors.orange),
@@ -75,7 +79,9 @@ class _SearchScreenState extends State<SearchScreen>
                   (context, index) {
                     switch (index) {
                       case 0:
-                        return Text("Search", style: h1);
+                        return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            child: Text("Search", style: h1));
                       case 1:
                         return const SizedBox(
                           height: 16,
@@ -91,7 +97,7 @@ class _SearchScreenState extends State<SearchScreen>
                   minHeight: 50.0,
                   maxHeight: 50.0,
                   child: GestureDetector(
-                    onTap: () => print("What do you want to listen to?"),
+                    onTap: () => widget.onSearchBar(),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
