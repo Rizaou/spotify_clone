@@ -18,8 +18,10 @@ class SearchScreen extends StatefulWidget {
     GenreCard(title: "Hip-Hop", cardColor: Color.fromARGB(255, 164, 99, 0)),
     GenreCard(title: "Mood", cardColor: Color.fromARGB(255, 194, 6, 69)),
     GenreCard(title: "Trending", cardColor: Color.fromARGB(255, 129, 48, 75)),
-    GenreCard(title: "Made For You", cardColor: Colors.blue),
-    GenreCard(title: "Made For You", cardColor: Colors.blue),
+    GenreCard(title: "Charts", cardColor: Color.fromARGB(255, 91, 57, 68)),
+    GenreCard(
+        title: "Dance/ Electroinc",
+        cardColor: Color.fromARGB(255, 187, 112, 0)),
     GenreCard(title: "Made For You", cardColor: Colors.blue),
     GenreCard(title: "Made For You", cardColor: Colors.blue),
     GenreCard(title: "Made For You", cardColor: Colors.blue),
@@ -88,27 +90,30 @@ class _SearchScreenState extends State<SearchScreen>
                 delegate: _SliverAppBarDelegate(
                   minHeight: 50.0,
                   maxHeight: 50.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: Colors.white,
-                    ),
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.search,
-                          size: 38,
-                        ),
-                        Expanded(
-                          child: Text(
-                            "What do you want to listen to?",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                  child: GestureDetector(
+                    onTap: () => print("What do you want to listen to?"),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        color: Colors.white,
+                      ),
+                      child: Row(
+                        children: const [
+                          Icon(
+                            Icons.search,
+                            size: 38,
+                          ),
+                          Expanded(
+                            child: Text(
+                              "What do you want to listen to?",
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
