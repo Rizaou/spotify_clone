@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify_clone/presentation/custom-theme.dart';
 
 class SearchBarScreen extends StatefulWidget {
   SearchBarScreen({Key? key}) : super(key: key);
@@ -37,8 +38,43 @@ class _SearchBarScreenState extends State<SearchBarScreen>
     return SafeArea(
       child: FadeTransition(
         opacity: _animation,
-        child: Center(
-          child: Text("Search a song"),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(color: Color.fromARGB(255, 40, 40, 40)),
+              width: MediaQuery.of(context).size.width,
+              height: 50,
+              child: Container(
+                  margin: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  decoration:
+                      BoxDecoration(color: Color.fromARGB(255, 69, 69, 69)),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          child: Text(
+                        "What do you want to listen to?",
+                        style: normalText,
+                      )),
+                      Icon(
+                        Icons.camera_alt_outlined,
+                        color: Colors.white,
+                      ),
+                    ],
+                  )),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 14),
+              alignment: Alignment.centerLeft,
+              height: 50,
+              child: Text(
+                "Recent searches",
+                style: h2,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
-  Widget screen = LibraryScreen();
-
+  // Widget screen = LibraryScreen();
+  Widget screen = SearchBarScreen();
   @override
   State<HomePage> createState() => _HomePageState();
 }
