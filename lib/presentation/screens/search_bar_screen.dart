@@ -18,6 +18,7 @@ class _SearchBarScreenState extends State<SearchBarScreen>
   late Animation<double> _animation;
   late Animation<double> _arrowBoxSize;
   late Animation<double> _paddingSize;
+  final FocusNode _focusNode = FocusNode();
 
   String get headerText => "Merhaba";
 
@@ -62,6 +63,7 @@ class _SearchBarScreenState extends State<SearchBarScreen>
     super.dispose();
     _sceenFadeController.dispose();
     _arrowController.dispose();
+    _focusNode.dispose();
   }
 
   void scaleUpAppBar() {
@@ -69,6 +71,8 @@ class _SearchBarScreenState extends State<SearchBarScreen>
 
     _arrowController.forward();
     _scaleUpPaddingController.forward();
+
+    _focusNode.requestFocus();
   }
 
   void scaleDownAppBar() {
@@ -76,6 +80,8 @@ class _SearchBarScreenState extends State<SearchBarScreen>
 
     _arrowController.reverse();
     _scaleUpPaddingController.reverse();
+
+    _focusNode.unfocus();
   }
 
   @override
@@ -111,7 +117,9 @@ class _SearchBarScreenState extends State<SearchBarScreen>
                               ? IconButton(
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 4),
-                                  onPressed: scaleDownAppBar,
+                                  onPressed: () {
+                                    scaleDownAppBar();
+                                  },
                                   icon: const Icon(
                                     Icons.arrow_back,
                                     color: Colors.white,
@@ -120,10 +128,17 @@ class _SearchBarScreenState extends State<SearchBarScreen>
                               : null,
                         ),
                         Expanded(
-                            child: Text(
-                          "What do you want to listen to?",
-                          style: normalText,
-                        )),
+                          child: TextField(
+                            focusNode: _focusNode,
+                            onTap: scaleUpAppBar,
+                            decoration: InputDecoration(
+                              focusedBorder: InputBorder.none,
+                              hintText: "What do you want to listen to?",
+                              hintStyle: normalText.copyWith(),
+                            ),
+                            style: normalText.copyWith(),
+                          ),
+                        ),
                         Icon(
                           Icons.camera_alt_outlined,
                           color: Colors.white,
