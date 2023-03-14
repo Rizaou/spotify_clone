@@ -4,37 +4,84 @@ import 'package:spotify_clone/presentation/custom-theme.dart';
 class SearchBarScreen extends StatefulWidget {
   SearchBarScreen({Key? key}) : super(key: key);
 
+  bool showArrow = false;
+  bool clickedAppBar = false;
   @override
   State<SearchBarScreen> createState() => _SearchBarScreenState();
 }
 
 class _SearchBarScreenState extends State<SearchBarScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
+    with TickerProviderStateMixin {
+  late AnimationController _sceenFadeController;
+  late AnimationController _arrowController;
+  late AnimationController _scaleUpPaddingController;
   late Animation<double> _animation;
+  late Animation<double> _arrowBoxSize;
+  late Animation<double> _paddingSize;
 
   String get headerText => "Merhaba";
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _controller =
+    _sceenFadeController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 400));
-    _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);
+    _animation = Tween(begin: 0.0, end: 1.0).animate(_sceenFadeController);
+
+    _arrowController = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        milliseconds: 200,
+      ),
+    );
+
+    _arrowBoxSize = Tween(begin: 0.0, end: 30.0).animate(_arrowController)
+      ..addListener(() {
+        setState(() {});
+      })
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          widget.showArrow = true;
+        }
+      });
+
+    _scaleUpPaddingController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 200));
+
+    _paddingSize =
+        Tween<double>(begin: 8.0, end: 0.0).animate(_scaleUpPaddingController)
+          ..addListener(() {
+            setState(() {});
+          });
+
+    scaleUpAppBar();
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
-    _controller.dispose();
+    _sceenFadeController.dispose();
+    _arrowController.dispose();
+  }
+
+  void scaleUpAppBar() {
+    widget.clickedAppBar = true;
+
+    _arrowController.forward();
+    _scaleUpPaddingController.forward();
+  }
+
+  void scaleDownAppBar() {
+    widget.clickedAppBar = false;
+
+    _arrowController.reverse();
+    _scaleUpPaddingController.reverse();
   }
 
   @override
   Widget build(BuildContext context) {
-    _controller.forward();
+    _sceenFadeController.forward();
+
     return SafeArea(
       child: FadeTransition(
         opacity: _animation,
@@ -45,24 +92,45 @@ class _SearchBarScreenState extends State<SearchBarScreen>
               decoration: BoxDecoration(color: Color.fromARGB(255, 40, 40, 40)),
               width: MediaQuery.of(context).size.width,
               height: 50,
-              child: Container(
-                  margin: const EdgeInsets.all(8),
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  decoration:
-                      BoxDecoration(color: Color.fromARGB(255, 69, 69, 69)),
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: Text(
-                        "What do you want to listen to?",
-                        style: normalText,
-                      )),
-                      Icon(
-                        Icons.camera_alt_outlined,
-                        color: Colors.white,
-                      ),
-                    ],
-                  )),
+              child: GestureDetector(
+                onTap: () {
+                  scaleUpAppBar();
+                },
+                child: Container(
+                    margin: EdgeInsets.all(_paddingSize.value),
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    decoration:
+                        BoxDecoration(color: Color.fromARGB(255, 69, 69, 69)),
+                    child: Row(
+                      children: [
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          // padding: const EdgeInsets.all(4),
+                          width: _arrowBoxSize.value,
+                          child: widget.clickedAppBar
+                              ? IconButton(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 4),
+                                  onPressed: scaleDownAppBar,
+                                  icon: const Icon(
+                                    Icons.arrow_back,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : null,
+                        ),
+                        Expanded(
+                            child: Text(
+                          "What do you want to listen to?",
+                          style: normalText,
+                        )),
+                        Icon(
+                          Icons.camera_alt_outlined,
+                          color: Colors.white,
+                        ),
+                      ],
+                    )),
+              ),
             ),
             Container(
               padding: const EdgeInsets.only(left: 14),
