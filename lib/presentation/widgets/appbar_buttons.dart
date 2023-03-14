@@ -7,11 +7,13 @@ class AppBarButton extends StatefulWidget {
     Key? key,
     required this.title,
     required this.onclick,
+    this.backgroundColor,
   }) : super(key: key);
 
   bool clicked = false;
   String title;
   Function onclick;
+  Color? backgroundColor;
   @override
   State<AppBarButton> createState() => _AppBarButtonState();
 }
@@ -38,7 +40,7 @@ class _AppBarButtonState extends State<AppBarButton> {
             bottom: 8,
           ),
           decoration: BoxDecoration(
-            color: widget.clicked ? appbarButtonClickedColor : null,
+            color: widget.backgroundColor,
             border: Border.all(
               color: Colors.grey,
             ),
