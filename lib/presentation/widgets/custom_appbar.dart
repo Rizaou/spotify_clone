@@ -235,7 +235,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   hasClicked()
-                      ? AppBarButton(title: "X", onclick: clearList)
+                      ? AppBarButton(
+                          title: "X",
+                          onclick: clearList,
+                          backgroundColor: Color.fromARGB(255, 32, 80, 34),
+                        )
                       : SizedBox(),
                   ...getTitleList(),
                 ],
