@@ -10,6 +10,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
+  final double _iconSize = 30.0;
+
   late AnimationController _fadeAnimationController;
   late Animation<double> _fadeAnimation;
 
@@ -35,14 +37,58 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     _fadeAnimationController.forward();
     return SafeArea(
-        child: FadeTransition(
-      opacity: _fadeAnimation,
-      child: Center(
-        child: Text(
-          "HOME SCREEN",
-          style: h1,
-        ),
+      child: FadeTransition(
+        opacity: _fadeAnimation,
+        child: CustomScrollView(slivers: [
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 16,
+                left: 16,
+                right: 16,
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      child: Text(
+                        "Good morning",
+                        style: h1,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(
+                            Icons.notifications_none_outlined,
+                            color: Colors.white,
+                            size: _iconSize,
+                          ),
+                          Icon(
+                            Icons.timelapse_sharp,
+                            color: Colors.white,
+                            size: _iconSize,
+                          ),
+                          Icon(
+                            Icons.settings,
+                            color: Colors.white,
+                            size: _iconSize,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ]),
       ),
-    ));
+    );
   }
 }
