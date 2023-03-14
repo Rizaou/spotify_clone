@@ -93,7 +93,7 @@ class _SearchScreenState extends State<SearchScreen>
               ),
               SliverPersistentHeader(
                 pinned: true,
-                delegate: _SliverAppBarDelegate(
+                delegate: SliverAppBarDelegate(
                   minHeight: 50.0,
                   maxHeight: 50.0,
                   child: GestureDetector(
@@ -152,8 +152,8 @@ class _SearchScreenState extends State<SearchScreen>
   }
 }
 
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate({
+class SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  SliverAppBarDelegate({
     required this.minHeight,
     required this.maxHeight,
     required this.child,
@@ -174,7 +174,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => math.max(maxHeight, minHeight);
 
   @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+  bool shouldRebuild(SliverAppBarDelegate oldDelegate) {
     return maxHeight != oldDelegate.maxHeight ||
         minHeight != oldDelegate.minHeight ||
         child != oldDelegate.child;
