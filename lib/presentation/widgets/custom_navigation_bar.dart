@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spotify_clone/presentation/widgets/bottom_music_bar.dart';
 
 import '../custom-theme.dart';
 
@@ -49,15 +50,7 @@ class CustomNavigationBar extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                height: 60,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  color: Color.fromARGB(255, 33, 74, 106),
-                ),
-              ),
+              BottomMusicBar(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
