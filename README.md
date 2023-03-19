@@ -1,16 +1,16 @@
 # spotify_clone
 
-A new Flutter project.
+<hr style="border:2px solid blue">
 
-## Getting Started
+<img src="https://github.com/Rizaou/spotify_clone/blob/readme/photos/1.png"/>
+<img src="https://github.com/Rizaou/spotify_clone/blob/readme/photos/2.png"/>
+<img src="https://github.com/Rizaou/spotify_clone/blob/readme/photos/3.png"/>
+<img src="https://github.com/Rizaou/spotify_clone/blob/readme/photos/4.png"/>
+<img src="https://github.com/Rizaou/spotify_clone/blob/readme/photos/5.png"/>
+<img src="https://github.com/Rizaou/spotify_clone/blob/readme/photos/6.png"/>
 
-This project is a starting point for a Flutter application.
+<hr style="border:2px solid blue">
 
-A few resources to get you started if this is your first Flutter project:
+* Spotify Clone App.
+* Doesn't contain any audio or image data.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
