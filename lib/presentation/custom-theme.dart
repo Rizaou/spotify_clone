@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Color bgColor = Color.fromARGB(255, 0, 0, 0);
 Color textColor = Colors.white;
-Color greenTextColor = Colors.green.shade800;
+Color greenTextColor = Color.fromARGB(255, 35, 154, 41);
 double textSize = 32;
 TextStyle h1 = const TextStyle(
     color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold);

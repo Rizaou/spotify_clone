@@ -66,31 +66,31 @@ class _LibraryScreenState extends State<LibraryScreen>
                       color: Colors.purple,
                     ),
                     LibraryItems(
-                      title: "Türkçe",
+                      title: "Playlist",
                       subtitle: "Playlist * Deniz",
                     ),
                     LibraryItems(
-                      title: "Türkçe",
+                      title: "Playlist",
                       subtitle: "Playlist * Deniz",
                     ),
                     LibraryItems(
-                      title: "Türkçe",
+                      title: "Playlist",
                       subtitle: "Playlist * Deniz",
                     ),
                     LibraryItems(
-                      title: "Türkçe",
+                      title: "Playlist",
                       subtitle: "Playlist * Deniz",
                     ),
                     LibraryItems(
-                      title: "Türkçe",
+                      title: "Playlist",
                       subtitle: "Playlist * Deniz",
                     ),
                     LibraryItems(
-                      title: "Türkçe",
+                      title: "Playlist",
                       subtitle: "Playlist * Deniz",
                     ),
                     LibraryItems(
-                      title: "Türkçe",
+                      title: "Playlist",
                       subtitle: "Playlist * Deniz",
                     ),
                   ],
