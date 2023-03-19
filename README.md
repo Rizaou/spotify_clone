@@ -12,5 +12,5 @@
 <hr style="border:2px solid blue">
 
 * Spotify Clone App.
-* Doesn't included any audio or image
+* Doesn't contain any audio or image data.
 
