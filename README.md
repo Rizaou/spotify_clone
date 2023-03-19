@@ -1,6 +1,7 @@
 # spotify_clone
 
-A new Flutter project.
+Spotify Clone App
+Doesn't included any audio or image
 
 ## Getting Started
 
