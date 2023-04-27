@@ -7,10 +7,10 @@ import 'package:spotify_clone/presentation/widgets/genre_cards.dart';
 class SearchScreen extends StatefulWidget {
   SearchScreen({
     Key? key,
-    required this.onSearchBar,
+    this.onSearchBar,
   }) : super(key: key);
   final int genreCount = 5;
-  Function onSearchBar;
+  Function? onSearchBar;
 
   final List<GenreCard> genreCards = [
     GenreCard(title: "Podcasts", cardColor: Colors.orange),
@@ -63,93 +63,98 @@ class _SearchScreenState extends State<SearchScreen>
   @override
   Widget build(BuildContext context) {
     _controller.forward();
-    return SafeArea(
-      child: FadeTransition(
-        opacity: _animation,
-        child: Padding(
-          padding: const EdgeInsets.only(
-            left: 16,
-            right: 16,
-            top: 16,
-          ),
-          child: NotificationListener<OverscrollIndicatorNotification>(
-            onNotification: (notification) {
-              notification.disallowIndicator();
-              return notification.accepted;
-            },
-            child: CustomScrollView(
-              slivers: [
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      switch (index) {
-                        case 0:
-                          return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              child: Text("Search", style: h1));
-                        case 1:
-                          return const SizedBox(
-                            height: 16,
-                          );
-                      }
-                    },
-                    childCount: 2,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: SafeArea(
+        child: FadeTransition(
+          opacity: _animation,
+          child: Padding(
+            padding: const EdgeInsets.only(
+              left: 16,
+              right: 16,
+              top: 16,
+            ),
+            child: NotificationListener<OverscrollIndicatorNotification>(
+              onNotification: (notification) {
+                notification.disallowIndicator();
+                return notification.accepted;
+              },
+              child: CustomScrollView(
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        switch (index) {
+                          case 0:
+                            return Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16),
+                                child: Text("Search", style: h1));
+                          case 1:
+                            return const SizedBox(
+                              height: 16,
+                            );
+                        }
+                      },
+                      childCount: 2,
+                    ),
                   ),
-                ),
-                SliverPersistentHeader(
-                  pinned: true,
-                  delegate: SliverAppBarDelegate(
-                    minHeight: 50.0,
-                    maxHeight: 50.0,
-                    child: GestureDetector(
-                      onTap: () => widget.onSearchBar(),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: Colors.white,
-                        ),
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.search,
-                              size: 38,
-                            ),
-                            Expanded(
-                              child: Text(
-                                "What do you want to listen to?",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
+                  SliverPersistentHeader(
+                    pinned: true,
+                    delegate: SliverAppBarDelegate(
+                      minHeight: 50.0,
+                      maxHeight: 50.0,
+                      child: GestureDetector(
+                        onTap: () => widget.onSearchBar!(),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: Colors.white,
+                          ),
+                          child: Row(
+                            children: const [
+                              Icon(
+                                Icons.search,
+                                size: 38,
+                              ),
+                              Expanded(
+                                child: Text(
+                                  "What do you want to listen to?",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                    child: Text(
-                      "Browse all",
-                      style: h2,
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                      child: Text(
+                        "Browse all",
+                        style: h2,
+                      ),
                     ),
                   ),
-                ),
-                SliverGrid(
-                  delegate: SliverChildBuilderDelegate(
-                      childCount: widget.genreCards.length,
-                      (context, index) => widget.genreCards[index]),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
+                  SliverGrid(
+                    delegate: SliverChildBuilderDelegate(
+                        childCount: widget.genreCards.length,
+                        (context, index) => widget.genreCards[index]),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 2,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
