@@ -149,18 +149,19 @@ class _HomeScreenState extends State<HomeScreen>
                           (context, index) {
                             return Container(
                               width: MediaQuery.of(context).size.width,
-                              height: 100,
+                              height: 120,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: widget.imageLocations.length,
                                 itemBuilder: (context, index) {
                                   return Container(
                                     margin: const EdgeInsets.all(10),
-                                    height: 100,
-                                    width: 100,
+                                    height: 120,
+                                    width: 120,
                                     child: Image.asset(
-                                        widget.imageLocations[index],
-                                        fit: BoxFit.fill),
+                                      widget.imageLocations[index],
+                                      fit: BoxFit.fill,
+                                    ),
                                   );
                                 },
                               ),
@@ -183,16 +184,19 @@ class _HomeScreenState extends State<HomeScreen>
                           (context, index) {
                             return Container(
                               width: MediaQuery.of(context).size.width,
-                              height: 100,
+                              height: 120,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: 7,
+                                itemCount: widget.imageLocations.length,
                                 itemBuilder: (context, index) {
                                   return Container(
                                     margin: const EdgeInsets.all(10),
-                                    height: 100,
-                                    width: 100,
-                                    color: Colors.red,
+                                    height: 120,
+                                    width: 120,
+                                    child: Image.asset(
+                                      widget.imageLocations[index],
+                                      fit: BoxFit.fill,
+                                    ),
                                   );
                                 },
                               ),
@@ -215,16 +219,19 @@ class _HomeScreenState extends State<HomeScreen>
                           (context, index) {
                             return Container(
                               width: MediaQuery.of(context).size.width,
-                              height: 100,
+                              height: 120,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: 7,
+                                itemCount: widget.imageLocations.length,
                                 itemBuilder: (context, index) {
                                   return Container(
                                     margin: const EdgeInsets.all(10),
-                                    height: 100,
-                                    width: 100,
-                                    color: Colors.red,
+                                    height: 120,
+                                    width: 120,
+                                    child: Image.asset(
+                                      widget.imageLocations[index],
+                                      fit: BoxFit.fill,
+                                    ),
                                   );
                                 },
                               ),
@@ -247,16 +254,19 @@ class _HomeScreenState extends State<HomeScreen>
                           (context, index) {
                             return Container(
                               width: MediaQuery.of(context).size.width,
-                              height: 100,
+                              height: 120,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: 7,
+                                itemCount: widget.imageLocations.length,
                                 itemBuilder: (context, index) {
                                   return Container(
                                     margin: const EdgeInsets.all(10),
-                                    height: 100,
-                                    width: 100,
-                                    color: Colors.red,
+                                    height: 120,
+                                    width: 120,
+                                    child: Image.asset(
+                                      widget.imageLocations[index],
+                                      fit: BoxFit.fill,
+                                    ),
                                   );
                                 },
                               ),
