@@ -136,7 +136,9 @@ class _HomeScreenState extends State<HomeScreen>
                               margin: const EdgeInsets.all(10),
                               height: 100,
                               width: 100,
-                              color: Colors.red,
+                              child: Image.asset(
+                                  "lib/images/artists/opeth.jpeg",
+                                  fit: BoxFit.fill),
                             );
                           },
                         ),
