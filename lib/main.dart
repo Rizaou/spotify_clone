@@ -21,10 +21,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) {
-        return ScreenWillPopProvider(HomeScreen());
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ScreenWillPopProvider(HomeScreen()),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ImageGetter(),
+        ),
+      ],
       builder: (context, child) {
         return MaterialApp(
           themeMode: ThemeMode.dark,
@@ -41,7 +46,7 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.screenProvider}) : super(key: key);
   ScreenWillPopProvider screenProvider;
-  final ImageGetter getter = ImageGetter();
+
   // Widget screen = LibraryScreen();
   Widget screen = HomeScreen();
   @override
@@ -61,8 +66,6 @@ class _HomePageState extends State<HomePage> {
     } else {
       widget.screen = screen;
     }
-
-    widget.getter.initImages();
   }
 
   void onSearchBar() {

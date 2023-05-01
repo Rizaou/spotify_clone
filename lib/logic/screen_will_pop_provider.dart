@@ -34,7 +34,7 @@ class ScreenWillPopProvider with ChangeNotifier {
 
       case homeScreenName:
         print("Home returned ${_screens.length}");
-        return const HomeScreen();
+        return HomeScreen();
       case searchScreenName:
         print("Search returned ${_screens.length}");
         return SearchScreen();

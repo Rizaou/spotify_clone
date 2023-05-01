@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
-class ImageGetter {
+class ImageGetter extends ChangeNotifier {
   Future<List<String>> initImages() async {
     // >> To get paths you need these 2 lines
     final manifestContent = await rootBundle.loadString('AssetManifest.json');
@@ -14,6 +14,7 @@ class ImageGetter {
     final imagePaths = manifestMap.keys
         .where((String key) => key.contains('lib/images/artists'))
         .toList();
+
     return imagePaths;
   }
 }
