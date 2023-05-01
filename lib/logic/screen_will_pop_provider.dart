@@ -12,32 +12,19 @@ class ScreenWillPopProvider with ChangeNotifier {
 
   final Queue<String> _screens = new Queue<String>();
 
-  ScreenWillPopProvider(Widget homeScreen) {
-    _screens.add(homeScreen.toString());
+  ScreenWillPopProvider(String name) {
+    _screens.add(name);
   }
 
-  void addScreen(Widget screen) {
-    _screens.add(screen.toString());
-    print("Screen added : ${screen.toString()} ${_screens.length}");
+  void addScreen(String screenName) {
+    _screens.add(screenName);
   }
 
-  Widget? getScreen() {
+  String getScreen() {
     if (_screens.isEmpty) {
-      print("screen is empty ${_screens.length}");
-      return null;
+      return "";
     }
 
-    switch (_screens.removeLast()) {
-      case libraryScreenName:
-        print("Library returned ${_screens.length}");
-        return LibraryScreen();
-
-      case homeScreenName:
-        print("Home returned ${_screens.length}");
-        return HomeScreen();
-      case searchScreenName:
-        print("Search returned ${_screens.length}");
-        return SearchScreen();
-    }
+    return _screens.removeLast();
   }
 }

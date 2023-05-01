@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => ScreenWillPopProvider(HomeScreen()),
+          create: (context) =>
+              ScreenWillPopProvider(ScreenWillPopProvider.homeScreenName),
         ),
         ChangeNotifierProvider(
           create: (context) => ImageGetter(),
@@ -49,6 +50,7 @@ class HomePage extends StatefulWidget {
 
   // Widget screen = LibraryScreen();
   Widget screen = HomeScreen();
+  String currentScreen = "";
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -58,42 +60,60 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    final screen = widget.screenProvider.getScreen();
-    if (screen == null) {
+    final String screen = widget.screenProvider.getScreen();
+    if (screen == "") {
       print("No screen initialization");
 
       widget.screen = HomeScreen();
+      widget.currentScreen = ScreenWillPopProvider.homeScreenName;
     } else {
-      widget.screen = screen;
+      widget.screen = _getScreen(screen);
+      widget.currentScreen = screen;
     }
   }
 
+  Widget _getScreen(String name) {
+    switch (name) {
+      case ScreenWillPopProvider.homeScreenName:
+        return HomeScreen();
+      case ScreenWillPopProvider.libraryScreenName:
+        return LibraryScreen();
+      case ScreenWillPopProvider.searchScreenName:
+        return SearchScreen(
+          onSearchBar: onSearchBar,
+        );
+    }
+
+    return HomeScreen();
+  }
+
   void onSearchBar() {
-    widget.screenProvider.addScreen(widget.screen);
     setState(() {
       widget.screen = SearchBarScreen();
     });
   }
 
   void onHome() {
-    if (widget.screen.toString() == HomeScreen().toString()) {
+    if (widget.currentScreen == ScreenWillPopProvider.homeScreenName) {
       return;
     }
 
-    widget.screenProvider.addScreen(widget.screen);
+    widget.screenProvider.addScreen(widget.currentScreen);
 
     setState(() {
       widget.screen = HomeScreen();
+      widget.currentScreen = ScreenWillPopProvider.homeScreenName;
     });
   }
 
   void onSearch() {
-    if (widget.screen.toString() == SearchScreen().toString()) {
+    if (widget.currentScreen == ScreenWillPopProvider.searchScreenName) {
       return;
     }
 
-    widget.screenProvider.addScreen(widget.screen);
+    widget.screenProvider.addScreen(widget.currentScreen);
     setState(() {
+      widget.currentScreen = ScreenWillPopProvider.searchScreenName;
       widget.screen = SearchScreen(
         onSearchBar: onSearchBar,
       );
@@ -101,33 +121,44 @@ class _HomePageState extends State<HomePage> {
   }
 
   void onLibrary() {
-    if (widget.screen.toString() == LibraryScreen().toString()) {
+    if (widget.currentScreen == ScreenWillPopProvider.libraryScreenName) {
       return;
     }
 
-    widget.screenProvider.addScreen(widget.screen);
+    widget.screenProvider.addScreen(widget.currentScreen);
     setState(() {
+      widget.currentScreen = ScreenWillPopProvider.libraryScreenName;
       widget.screen = LibraryScreen();
     });
   }
 
   Future<bool> _canChangeScreen() async {
-    var screen = widget.screenProvider.getScreen();
-    if (screen == null) {
+    var screenName = widget.screenProvider.getScreen();
+    Widget screenWidget = HomeScreen();
+
+    if (screenName == "") {
       print("screen is null");
       return true;
     } else {
-      if (screen.toString() == ScreenWillPopProvider.searchScreenName) {
-        screen = SearchScreen(
-          onSearchBar: onSearchBar,
-        );
+      switch (screenName) {
+        case ScreenWillPopProvider.searchScreenName:
+          screenWidget = SearchScreen(
+            onSearchBar: onSearchBar,
+          );
+          break;
+        case ScreenWillPopProvider.homeScreenName:
+          screenWidget = HomeScreen();
+          break;
+        case ScreenWillPopProvider.libraryScreenName:
+          screenWidget = LibraryScreen();
+          break;
       }
 
       setState(() {
-        widget.screen = screen!;
+        widget.screen = screenWidget;
+        widget.currentScreen = screenName;
       });
     }
-    print("Returned true");
     return false;
   }
 
