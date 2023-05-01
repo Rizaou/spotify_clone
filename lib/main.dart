@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:spotify_clone/logic/image_getter.dart';
 import 'package:spotify_clone/logic/screen_will_pop_provider.dart';
 import 'package:spotify_clone/presentation/custom-theme.dart';
 import 'package:spotify_clone/presentation/screens/home_screen.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatefulWidget {
   HomePage({Key? key, required this.screenProvider}) : super(key: key);
   ScreenWillPopProvider screenProvider;
+  final ImageGetter getter = ImageGetter();
   // Widget screen = LibraryScreen();
   Widget screen = HomeScreen();
   @override
@@ -59,6 +61,8 @@ class _HomePageState extends State<HomePage> {
     } else {
       widget.screen = screen;
     }
+
+    widget.getter.initImages();
   }
 
   void onSearchBar() {
